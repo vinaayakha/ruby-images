@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-LABEL maintainer="Your Name <your_email@example.com>"
+LABEL maintainer="Vinayak Iyer <vinuyer@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -33,18 +33,3 @@ RUN /bin/bash -l -c "rvm install 2.5.3 && rvm install 3.0.2"
 
 # Set default Ruby version
 RUN echo "rvm use 2.5.3 --default" >> ~/.bashrc
-
-# Set working directory
-WORKDIR /app
-
-# Copy application files
-COPY . /app
-
-# Install dependencies
-RUN /bin/bash -l -c "gem install bundler -v '~> 2.2.0' && bundle install"
-
-# Start the application
-CMD ["bash", "-lc", "bundle exec rails server -p 8080"]
-
-# Expose port
-EXPOSE 8080
